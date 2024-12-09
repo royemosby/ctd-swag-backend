@@ -1,15 +1,30 @@
-# Koa example project
+# CTD-Swag Backend
 
-This is an example project that targets node 8.0.0 and up. The project is a simple Koa server with a REST API that demonstrates the basic functionalities of objection like models, queries, relations, eager loading and graph inserts.
+Minimal API to support CTD's React v3 curriculum code-along project, CTD-Swag.
 
-Note that this is not an example of how to build a web server. It's an example of how to use objection in a web server. All other aspects are kept as simple and minimal as possible.
+This project bootstrapped from Objection.js's KOA demo.
 
-# Install and run
+## Getting Started
 
-```sh
-git clone git@github.com:Vincit/objection.js.git objection
-cd objection/examples/koa
-npm install
+1. get PNGs from <https://github.com/royemosby/ctd-swag/tree/main/src/assets>
+   1. upload to hosting service (I used [imagekit.io/](https://imagekit.io/))
+2. rename `example.env` to `.env`
+3. establish postgres service that contains a blank database.
+4. Populate the `.env` with the database details using existing variables.
+5. Add base url provided by image hosting service or update the `image` in each entry's variants array found in [seeds file](/knex/seeds/initial_products.js)
+6. Run these three commands in the terminal.
+
+```terminal
+npm run migrate
+npm run seed
 npm start
-node client.js
 ```
+
+You only need to run the migrate and seed once unless a new migration is added.
+
+## Available Routes
+
+|VERB|Route|
+|-----|-----------------|
+|GET  |/products        |
+|GET  |/products:/id    |
