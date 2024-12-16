@@ -1,218 +1,217 @@
 /**
  * @param { import("knex").Knex } knex
- * @returns { Promise<void> } 
+ * @returns { Promise<void> }
  */
-exports.seed = async function(knex) {
+exports.seed = async function (knex) {
   // Deletes ALL existing entries
-  await knex('products').del()
+  await knex('products').del();
   await knex('products').insert(
-    products.map(product => {
+    products.map((product) => {
       return {
-        name: product["name"],
-        price: product["price"],
-        description: product["description"],
-        variants: JSON.stringify(product["variants"]),
-        in_stock: true,
-      }
+        baseItemName: product['baseItemName'],
+        variantName: product['variantName'],
+        price: product['price'],
+        baseDescription: product['baseDescription'],
+        variantDescription: product['variantDescription'],
+        image: product['image'],
+        inStock: true,
+      };
     })
   );
 };
 
 const products = [
-    {
-      "name": "Bucket Hat",
-      "id": "hat01",
-      "price": 29.99,
-      "description": "Protect your head from the sun with this stylish bucket hat",
-      "variants": [
-        {
-          "id": "hat01-variant01",
-          "color": "black",
-          "image": "bucket-hat-black.png"
-        },
-        {
-          "id": "hat01-variant02",
-          "color": "peach",
-          "image": "bucket-hat-peach.png"
-        }
-      ]
-    },
-    {
-      "name": "Canvas Bag",
-      "id": "bag01",
-      "price": 22.99,
-      "description": "Durable canvas tote bag with straps",
-      "variants": [
-        {
-          "id": "bag01-variant01",
-          "color": "blue",
-          "image": "canvas-bag-blue.png"
-        },
-        {
-          "id": "bag01-variant02",
-          "color": "orange",
-          "image": "canvas-bag-orange.png"
-        }
-      ]
-    },
-    {
-      "name": "Clock",
-      "id": "misc01",
-      "price": 22.99,
-      "description": "Battery-powered wall clock",
-      "variants": [
-        {
-          "id": "misc01-variant01",
-          "color": "default",
-          "image": "clock.png"
-        }
-      ]
-    },
-    {
-      "name": "Mouse Pad",
-      "id": "misc02",
-      "price": 12.99,
-      "description": "A pad perfect for mousing",
-      "variants": [
-        {
-          "id": "misc02-variant01",
-          "color": "default",
-          "image": "mouse-pad.png"
-        }
-      ]
-    },
-    {
-      "name": "Notebook",
-      "id": "misc03",
-      "price": 17.99,
-      "description": "Spiral-bound notebook with the Code The Dream logo.",
-      "variants": [
-        {
-          "id": "misc03-variant01",
-          "color": "default",
-          "image": "notebook.png"
-        }
-      ]
-    },
-    {
-      "name": "Phone Case",
-      "id": "misc04",
-      "price": 34.99,
-      "description": "Bold orange case - stylish and protects phones from drops up to 703 feet",
-      "variants": [
-        {
-          "id": "misc04-variant01",
-          "model": "iPhone",
-          "image": "phone-case.png"
-        },
-        {
-          "id": "misc04-variant02",
-          "model": "Samsung Galaxy",
-          "image": "phone-case.png"
-        },
-        {
-          "id": "misc04-variant03",
-          "model": "Google Pixel",
-          "image": "phone-case.png"
-        },
-        {
-          "id": "misc04-variant04",
-          "model": "OnePlus",
-          "image": "phone-case.png"
-        },
-        {
-          "id": "misc04-variant05",
-          "model": "Huawei P series",
-          "image": "phone-case.png"
-        }
-      ]
-    },
-    {
-      "name": "Pin",
-      "id": "misc05",
-      "price": 5.99,
-      "description": "5 inch yellow button with safety pin connector.",
-      "variants": [
-        {
-          "id": "misc05-variant01",
-          "color": "default",
-          "image": "pin.png"
-        }
-      ]
-    },
-    {
-      "name": "Shower Curtain",
-      "id": "misc06",
-      "price": 23.99,
-      "description": "Waterproof shower curtain. Hanging clips not included.",
-      "variants": [
-        {
-          "id": "misc06-variant01",
-          "color": "default",
-          "image": "shower-curtain.png"
-        }
-      ]
-    },
-    {
-      "name": "Sticker",
-      "id": "misc07",
-      "price": 2.99,
-      "description": "Re-stickable glossy vinyl sticker with the Code The Dream logo. Laptop-safe",
-      "variants": [
-        {
-          "id": "misc07variant01",
-          "color": "blue",
-          "image": "sticker-blue.png"
-        },
-        {
-          "id": "misc07variant02",
-          "color": "orange",
-          "image": "sticker-orange.png"
-        }
-      ]
-    },
-    {
-      "name": "Tee Shirt",
-      "id": "ts01",
-      "price": 19.99,
-      "sizes": [
-        "S",
-        "M",
-        "L",
-        "XL",
-        "2XL",
-        "3XL"
-      ],
-      "description": "Comfortable cotton t-shirt with the Code The Dream logo.",
-      "variants": [
-        {
-          "id": "ts01-variant01",
-          "color": "black",
-          "image": "tee-black.png"
-        },
-        {
-          "id": "ts01-variant02",
-          "color": "gray",
-          "image": "tee-gray.png"
-        }
-      ]
-    },
-    {
-      "name": "Throw Pillow",
-      "id": "misc08",
-      "price": 44.99,
-      "description": "Comfortable throw pillow and an excellent conversation starter.",
-      "variants": [
-        {
-          "id": "misc08-variant01",
-          "color": "peach",
-          "image": "throw-pillow-peach.png"
-        },
-        {
-          "id": "misc08-variant02",
-          "color": "turquoise",
-          "image": "throw-pillow-turquoise.png"
-        }
-      ]
-    }
-  ]
+  {
+    id: 1,
+    baseItemName: 'Bucket Hat',
+    variantName: 'Black',
+    price: 22.99,
+    baseDescription:
+      'Protect your head from the sun with this stylish bucket hat',
+    variantDescription: 'Black with an orange logo',
+    image: 'bucket-hat-black.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 2,
+    baseItemName: 'Bucket Hat',
+    variantName: 'Peach',
+    price: 22.99,
+    baseDescription:
+      'Protect your head from the sun with this stylish bucket hat',
+    variantDescription: 'Pale peach with an orange logo',
+    image: 'bucket-hat-peach.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 3,
+    baseItemName: 'Canvas Bag',
+    variantName: 'Blue',
+    price: 22.99,
+    baseDescription: 'Durable canvas tote back with straps',
+    variantDescription: 'Natural cotton canvas with a dark blue logo',
+    image: 'canvas-bag-blue.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 4,
+    baseItemName: 'Canvas Bag',
+    variantName: 'Orange',
+    price: 22.99,
+    baseDescription: 'Durable canvas tote back with straps',
+    variantDescription: 'Natural cotton canvas with an orange logo',
+    image: 'canvas-bag-orange.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 5,
+    baseItemName: 'Clock',
+    variantName: 'Default',
+    price: 27.99,
+    baseDescription: 'Battery-powered wall clock. White face with black logo',
+    variantDescription: '',
+    image: 'clock.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 6,
+    baseItemName: 'Mouse Pad',
+    variantName: 'Default',
+    price: 12.99,
+    baseDescription:
+      'A pad perfect for mousing. White background with dark blue logo',
+    variantDescription: '',
+    image: 'mouse-pad.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 7,
+    baseItemName: 'Notebook',
+    variantName: 'Default',
+    price: 17.99,
+    baseDescription:
+      'Black spiral-bound notebook with blue Code the Dream logo',
+    variantDescription: '',
+    image: 'notebook.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 8,
+    baseItemName: 'Phone Case',
+    variantName: 'iPhone',
+    price: 34.99,
+    baseDescription:
+      'Bold orange case - stylish and protects phones from drops up to 703 feet',
+    variantDescription: 'Works with iPhone',
+    image: 'phone-case.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 9,
+    baseItemName: 'Phone Case',
+    variantName: 'Samsung Galaxy',
+    price: 34.99,
+    baseDescription:
+      'Bold orange case - stylish and protects phones from drops up to 703 feet',
+    variantDescription: 'Works with Samsung Galaxy',
+    image: 'phone-case.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 10,
+    baseItemName: 'Phone Case',
+    variantName: 'Google Pixel',
+    price: 34.99,
+    baseDescription:
+      'Bold orange case - stylish and protects phones from drops up to 703 feet',
+    variantDescription: 'Works with Google Pixel',
+    image: 'phone-case.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 11,
+    baseItemName: 'Phone Case',
+    variantName: 'OnePlus',
+    price: 34.99,
+    baseDescription:
+      'Bold orange case - stylish and protects phones from drops up to 703 feet',
+    variantDescription: 'Works with OnePlus',
+    image: 'phone-case.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 12,
+    baseItemName: 'Phone Case',
+    variantName: 'Huwei P Series',
+    price: 34.99,
+    baseDescription:
+      'Bold orange case - stylish and protects phones from drops up to 703 feet',
+    variantDescription: 'Works with Huwei P Series',
+    image: 'phone-case.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 13,
+    baseItemName: 'Pin',
+    variantName: 'Default',
+    price: 5.99,
+    baseDescription: '5 inch yellow button with a safety pin attacher',
+    variantDescription: '',
+    image: 'pin.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 14,
+    baseItemName: 'Shower Curtain',
+    variantName: 'Default',
+    price: 23.99,
+    baseDescription: 'Waterproof shower curtain - hanging clips not included',
+    variantDescription: '',
+    image: 'shower-curtain.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 15,
+    baseItemName: 'Sticker',
+    variantName: 'Blue',
+    price: 2.99,
+    baseDescription:
+      'Re-stickable glossy vinyl sticker with the Code The Dream logo. Laptop-safe',
+    variantDescription: 'Dark blue',
+    image: 'sticker-blue.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 16,
+    baseItemName: 'Sticker',
+    variantName: 'Orange',
+    price: 2.99,
+    baseDescription:
+      'Re-stickable glossy vinyl sticker with the Code The Dream logo. Laptop-safe',
+    variantDescription: 'Orange',
+    image: 'sticker-orange.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 17,
+    baseItemName: 'Throw Pillow',
+    variantName: 'Peach',
+    price: 44.99,
+    baseDescription:
+      'Comfortable throw pillow and an excellent conversation starter',
+    variantDescription: 'Peach cotton with large pale peach logo',
+    image: 'throw-pillow-peach.png',
+    inStock: 'TRUE',
+  },
+  {
+    id: 18,
+    baseItemName: 'Throw Pillow',
+    variantName: 'Turquoise',
+    price: 44.99,
+    baseDescription:
+      'Comfortable throw pillow and an excellent conversation starter',
+    variantDescription: 'Turquoise cotton with large dark blue logo',
+    image: 'throw-pillow-turquoise.png',
+    inStock: 'TRUE',
+  },
+];
