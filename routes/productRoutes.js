@@ -1,6 +1,6 @@
-'use strict'
+'use strict';
 
-const Product = require('./models/Product')
+const Product = require('../models/Product');
 
 module.exports = (router) => {
   /**
