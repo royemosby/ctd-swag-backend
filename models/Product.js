@@ -10,9 +10,8 @@ class Product extends Model {
     return {
       type: 'object',
       required: [
-        'name',
         'price',
-        'baseItemName',
+        'baseName',
         'variantName',
         'baseDescription',
         'number',
@@ -20,7 +19,7 @@ class Product extends Model {
       ],
       properties: {
         id: { type: 'integer' },
-        baseItemName: { type: 'string', minLength: 1, maxLength: 255 },
+        baseName: { type: 'string', minLength: 1, maxLength: 255 },
         variantName: { type: 'string', minLength: 1, maxLength: 255 },
         price: { type: 'number' },
         baseDescription: { type: 'string', maxLength: 255 },
