@@ -5,7 +5,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable('products', (table) => {
     table.increments('id').primary();
-    table.string('baseItemName');
+    table.string('baseName');
     table.string('variantName');
     table.float('price');
     table.string('baseDescription');

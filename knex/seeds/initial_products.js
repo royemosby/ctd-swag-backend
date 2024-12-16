@@ -8,7 +8,7 @@ exports.seed = async function (knex) {
   await knex('products').insert(
     products.map((product) => {
       return {
-        baseItemName: product['baseItemName'],
+        baseName: product['baseName'],
         variantName: product['variantName'],
         price: product['price'],
         baseDescription: product['baseDescription'],
@@ -23,7 +23,7 @@ exports.seed = async function (knex) {
 const products = [
   {
     id: 1,
-    baseItemName: 'Bucket Hat',
+    baseName: 'Bucket Hat',
     variantName: 'Black',
     price: 22.99,
     baseDescription:
@@ -34,7 +34,7 @@ const products = [
   },
   {
     id: 2,
-    baseItemName: 'Bucket Hat',
+    baseName: 'Bucket Hat',
     variantName: 'Peach',
     price: 22.99,
     baseDescription:
@@ -45,7 +45,7 @@ const products = [
   },
   {
     id: 3,
-    baseItemName: 'Canvas Bag',
+    baseName: 'Canvas Bag',
     variantName: 'Blue',
     price: 22.99,
     baseDescription: 'Durable canvas tote back with straps',
@@ -55,7 +55,7 @@ const products = [
   },
   {
     id: 4,
-    baseItemName: 'Canvas Bag',
+    baseName: 'Canvas Bag',
     variantName: 'Orange',
     price: 22.99,
     baseDescription: 'Durable canvas tote back with straps',
@@ -65,7 +65,7 @@ const products = [
   },
   {
     id: 5,
-    baseItemName: 'Clock',
+    baseName: 'Clock',
     variantName: 'Default',
     price: 27.99,
     baseDescription: 'Battery-powered wall clock. White face with black logo',
@@ -75,7 +75,7 @@ const products = [
   },
   {
     id: 6,
-    baseItemName: 'Mouse Pad',
+    baseName: 'Mouse Pad',
     variantName: 'Default',
     price: 12.99,
     baseDescription:
@@ -86,7 +86,7 @@ const products = [
   },
   {
     id: 7,
-    baseItemName: 'Notebook',
+    baseName: 'Notebook',
     variantName: 'Default',
     price: 17.99,
     baseDescription:
@@ -97,7 +97,7 @@ const products = [
   },
   {
     id: 8,
-    baseItemName: 'Phone Case',
+    baseName: 'Phone Case',
     variantName: 'iPhone',
     price: 34.99,
     baseDescription:
@@ -108,7 +108,7 @@ const products = [
   },
   {
     id: 9,
-    baseItemName: 'Phone Case',
+    baseName: 'Phone Case',
     variantName: 'Samsung Galaxy',
     price: 34.99,
     baseDescription:
@@ -119,7 +119,7 @@ const products = [
   },
   {
     id: 10,
-    baseItemName: 'Phone Case',
+    baseName: 'Phone Case',
     variantName: 'Google Pixel',
     price: 34.99,
     baseDescription:
@@ -130,7 +130,7 @@ const products = [
   },
   {
     id: 11,
-    baseItemName: 'Phone Case',
+    baseName: 'Phone Case',
     variantName: 'OnePlus',
     price: 34.99,
     baseDescription:
@@ -141,7 +141,7 @@ const products = [
   },
   {
     id: 12,
-    baseItemName: 'Phone Case',
+    baseName: 'Phone Case',
     variantName: 'Huwei P Series',
     price: 34.99,
     baseDescription:
@@ -152,7 +152,7 @@ const products = [
   },
   {
     id: 13,
-    baseItemName: 'Pin',
+    baseName: 'Pin',
     variantName: 'Default',
     price: 5.99,
     baseDescription: '5 inch yellow button with a safety pin attacher',
@@ -162,7 +162,7 @@ const products = [
   },
   {
     id: 14,
-    baseItemName: 'Shower Curtain',
+    baseName: 'Shower Curtain',
     variantName: 'Default',
     price: 23.99,
     baseDescription: 'Waterproof shower curtain - hanging clips not included',
@@ -172,7 +172,7 @@ const products = [
   },
   {
     id: 15,
-    baseItemName: 'Sticker',
+    baseName: 'Sticker',
     variantName: 'Blue',
     price: 2.99,
     baseDescription:
@@ -183,7 +183,7 @@ const products = [
   },
   {
     id: 16,
-    baseItemName: 'Sticker',
+    baseName: 'Sticker',
     variantName: 'Orange',
     price: 2.99,
     baseDescription:
@@ -194,7 +194,7 @@ const products = [
   },
   {
     id: 17,
-    baseItemName: 'Throw Pillow',
+    baseName: 'Throw Pillow',
     variantName: 'Peach',
     price: 44.99,
     baseDescription:
@@ -205,7 +205,7 @@ const products = [
   },
   {
     id: 18,
-    baseItemName: 'Throw Pillow',
+    baseName: 'Throw Pillow',
     variantName: 'Turquoise',
     price: 44.99,
     baseDescription:
