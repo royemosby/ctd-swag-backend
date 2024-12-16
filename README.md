@@ -24,7 +24,10 @@ You only need to run the migrate and seed once unless a new migration is added.
 
 ## Available Routes
 
-|VERB|Route|
-|-----|-----------------|
-|GET  |/products        |
-|GET  |/products:/id    |
+|VERB|Route|Notes|
+|------|-----------------|----------------------------|
+|GET   |/products        | |
+|GET   |/products:/id    | |
+|GET   |/users           |temp dev route              |
+|POST  |/users           | |
+|DELETE|/users/:firstName|temp dev route              |
