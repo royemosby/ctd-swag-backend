@@ -50,7 +50,7 @@ class CartItemController {
   //used in get user
   static async getUserCartItems(ctx) {
     try {
-      const userId = ctx.state.user.id;
+      const userId = ctx.state.user.userId;
       const cartItems = await CartItem.query()
         .where({
           userId,
@@ -58,20 +58,19 @@ class CartItemController {
         .withGraphFetched('product');
 
       if (cartItems.length > 0) {
-        return cartItems;
+        ctx.state.user.cartItems = cartItems;
       } else {
-        return [];
+        ctx.state.user.cartItems = [];
       }
     } catch (err) {
-      console.log(err);
-      return [];
+      ctx.body = { err };
     }
   }
 
   //used in patch cart
   static async syncUserCart(ctx) {
     try {
-      const userId = ctx.state.user.id; // Get user ID from JWT token payload
+      const userId = ctx.state.user.userId;
       await CartItem.query().where({ userId }).del();
       const newCartItems = ctx.request.body.cartItems.map((item) => ({
         ...item,
@@ -80,7 +79,7 @@ class CartItemController {
       const insertedCartItems =
         await CartItem.query().insertAndFetch(newCartItems);
       ctx.status = 201;
-      ctx.body = insertedCartItems;
+      ctx.body.cartItems = insertedCartItems;
     } catch (err) {
       ctx.status = 500;
       ctx.body = { error: 'Failed to sync cart items' };

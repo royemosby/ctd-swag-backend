@@ -34,11 +34,12 @@ class AuthController {
         secure: process.env.NODE_ENV === 'production', // Set secure flag in production
         maxAge: 604800000, // 7 days
       });
-      ctx.state.user = { id: user.id };
+      ctx.state.user = { userId: user.id };
 
-      const cartItems = await CartItemController.getUserCartItems(ctx);
+      await CartItemController.getUserCartItems(ctx);
+      //console.log(ctx.response);
       ctx.status = 200;
-      ctx.body = { message: 'Login successful', user, cartItems };
+      ctx.body = { message: 'Login successful', user };
     } catch (err) {
       ctx.status = 500;
       ctx.body = { error: 'Failed to authenticate user' };
