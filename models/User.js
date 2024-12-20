@@ -19,6 +19,19 @@ class User extends Model {
       },
     };
   }
+  static get relationMappings() {
+    const CartItem = require('./CartItem');
+    return {
+      cartItems: {
+        relation: Model.HasManyRelation,
+        modelClass: CartItem,
+        join: {
+          from: 'users.id',
+          to: 'cart_items.userId',
+        },
+      },
+    };
+  }
 }
 
 module.exports = User;

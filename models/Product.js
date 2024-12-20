@@ -29,6 +29,19 @@ class Product extends Model {
       },
     };
   }
+  static get relationMappings() {
+    const CartItem = require('./CartItem');
+    return {
+      cartItems: {
+        relation: Model.HasManyRelation,
+        modelClass: Cart,
+        join: {
+          from: 'products.id',
+          to: 'cart_items.productId',
+        },
+      },
+    };
+  }
 }
 
 module.exports = Product;
