@@ -32,6 +32,14 @@ class User extends Model {
       },
     };
   }
+
+  static async findById(id) {
+    return this.query().where('id', id);
+  }
+
+  static async findByEmail(email) {
+    return User.query().findOne({ email: email.toLowerCase() });
+  }
 }
 
 module.exports = User;
