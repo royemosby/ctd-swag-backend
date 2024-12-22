@@ -3,14 +3,13 @@
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-
-const CartItemController = require('./CartItemController');
+const CartItem = require('../models/CartItem');
 
 class AuthController {
   static async login(ctx) {
     try {
       const { email, password } = ctx.request.body;
-      const user = await User.query().findOne({ email: email.toLowerCase() });
+      const user = await User.findByEmail(email);
 
       if (!user) {
         ctx.status = 401;
@@ -34,9 +33,8 @@ class AuthController {
         secure: process.env.NODE_ENV === 'production', // Set secure flag in production
         maxAge: 604800000, // 7 days
       });
-      ctx.state.user = { id: user.id };
 
-      const cartItems = await CartItemController.getUserCartItems(ctx);
+      const cartItems = await CartItem.findByUserId(user.id);
       ctx.status = 200;
       ctx.body = { message: 'Login successful', user, cartItems };
     } catch (err) {
@@ -80,6 +78,7 @@ class AuthController {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production', // Set secure flag in production
         maxAge: 0, // Expire the cookie immediately
+        overwrite: true,
       });
       ctx.status = 200;
       ctx.body = { message: 'Logout successful' };

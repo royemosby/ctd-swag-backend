@@ -15,7 +15,7 @@ class UserController {
 
   static async getUserById(ctx) {
     try {
-      const user = await User.query().where('id', ctx.params.id);
+      const user = await User.findById(ctx.params.id);
       ctx.status = 200;
       ctx.body = user;
     } catch (err) {
@@ -26,10 +26,7 @@ class UserController {
 
   static async getUserByEmail(ctx) {
     try {
-      const user = await User.query().where(
-        'email',
-        ctx.params.email.toLowerCase()
-      );
+      const user = await User.findByEmail(ctx.params.email);
       ctx.status = 200;
       ctx.body = user;
     } catch (err) {
