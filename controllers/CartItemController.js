@@ -38,8 +38,7 @@ class CartItemController {
   static async getUserCartItems(ctx) {
     try {
       const userId = ctx.state.user.id;
-      const cartItems =
-        await CartItem.findByUserId(userId).withGraphFetched('product');
+      const cartItems = await CartItem.findByUserId(userId);
 
       if (cartItems.length > 0) {
         return cartItems;
