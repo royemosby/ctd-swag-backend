@@ -28,15 +28,9 @@ class AuthController {
         expiresIn: '7d',
       });
 
-      ctx.cookies.set('token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Set secure flag in production
-        maxAge: 604800000, // 7 days
-      });
-
       const cartItems = await CartItem.findByUserId(user.id);
       ctx.status = 200;
-      ctx.body = { message: 'Login successful', user, cartItems };
+      ctx.body = { message: 'Login successful', user, cartItems, token };
     } catch (err) {
       ctx.status = 500;
       ctx.body = { error: 'Failed to authenticate user' };
@@ -59,27 +53,16 @@ class AuthController {
         expiresIn: '7d',
       });
 
-      ctx.cookies.set('token', token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Set secure flag in production
-        maxAge: 604800000, // 7 days
-      });
-
       ctx.status = 201;
-      ctx.body = { ...user };
+      ctx.body = { ...user, token };
     } catch (err) {
       ctx.status = 500;
       ctx.body = { error: 'Failed to register user' };
     }
   }
+
   static async logout(ctx) {
     try {
-      ctx.cookies.set('token', '', {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === 'production', // Set secure flag in production
-        maxAge: 0, // Expire the cookie immediately
-        overwrite: true,
-      });
       ctx.status = 200;
       ctx.body = { message: 'Logout successful' };
     } catch (err) {

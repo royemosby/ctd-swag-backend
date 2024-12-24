@@ -40,7 +40,8 @@ app.use(bodyParser());
 app.use(
   jwt({
     secret: process.env.JWT_SECRET,
-    getToken: (ctx) => ctx.cookies.get('token'),
+    getToken: (ctx) =>
+      ctx.headers.authorization && ctx.headers.authorization.split(' ')[1],
   }).unless({
     path: [/^\/products|^\/auth|^\/users/],
   })
