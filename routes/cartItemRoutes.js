@@ -4,14 +4,15 @@ const CartItemController = require('../controllers/CartItemController');
 
 module.exports = (router) => {
   /**
-   * Add an item to the cart.
+   * Add single item to the cart.
    */
   router.post('/cart', CartItemController.upsertCartItem);
 
   /**
    * Fetch all items in the cart.
-   */
-  router.get('/cart', CartItemController.getUserCartItems);
+   * Currently not used but anticipated.
+  router.get('/cart', CartItemController.getAllCartItems);
+  */
 
   router.patch('/cart', CartItemController.syncUserCart);
 };
