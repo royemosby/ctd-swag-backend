@@ -23,7 +23,8 @@ class CartItemController {
     }
   }
 
-  //admin tool
+  /*
+  * Currently not used but anticipated.
   static async getAllCartItems(ctx) {
     try {
       const cartItems = await CartItem.query();
@@ -33,38 +34,32 @@ class CartItemController {
       ctx.body = { error: 'Failed to fetch cart items' };
     }
   }
-
-  //used in get user
-  static async getUserCartItems(ctx) {
-    try {
-      const userId = ctx.state.user.id;
-      const cartItems = await CartItem.findByUserId(userId);
-
-      if (cartItems.length > 0) {
-        return cartItems;
-      } else {
-        return [];
-      }
-    } catch (err) {
-      console.log(err);
-      return [];
-    }
-  }
+  */
 
   //used in patch cart
   static async syncUserCart(ctx) {
     try {
       const userId = ctx.state.user.id; // Get user ID from JWT token payload
       await CartItem.query().where({ userId }).del();
-      const newCartItems = ctx.request.body.cartItems.map((item) => ({
-        ...item,
-        userId,
-      }));
+      const newCartItems = ctx.request.body.cartItems.map((item) => {
+        const cartItem = {
+          userId,
+          productId: item.productId,
+          quantity: item.quantity,
+        };
+        if (item.id) {
+          cartItem.id = item.id;
+        }
+        return cartItem;
+      });
       const insertedCartItems =
         await CartItem.query().insertAndFetch(newCartItems);
+      //HOTFIX
+      const cartItems = await CartItem.findByUserId(userId);
       ctx.status = 201;
-      ctx.body = insertedCartItems;
+      ctx.body = cartItems;
     } catch (err) {
+      console.log(err);
       ctx.status = 500;
       ctx.body = { error: 'Failed to sync cart items' };
     }
